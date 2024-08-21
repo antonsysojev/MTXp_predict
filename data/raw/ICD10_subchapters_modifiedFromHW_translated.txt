@@ -1,0 +1,385 @@
+ICD	ICD.swe	ICD.eng
+A00-A09	Infektionssjukdomar utgående från mag-tarmkanalen	Intestinal infectious diseases
+A00-B99	NA	Certain infectious and parasitic diseases
+A15-A19	Tuberkulos	Tuberculosis
+A20-A28	Vissa djurburna bakteriesjukdomar	Certain zoonotic bacterial diseases
+A30-A49	Andra bakteriesjukdomar	Other bacterial diseases
+A50-A64	Huvudsakligen sexuellt överförda infektioner	Infections with a predominantly sexual mode of transmission
+A65-A69	Andra spiroketsjukdomar	Other spirochetal diseases
+A70-A74	Andra sjukdomar orsakade av klamydia	Other diseases caused by chlamydiae
+A75-A79	Sjukdomar orsakade av rickettsiaarter	Rickettsioses
+A80-A89	Virussjukdomar i centrala nervsystemet	Viral and prion infections of the central nervous system
+A90-A99	NA	Arthropod-borne viral fevers and viral hemorrhagic fevers
+A92-A99	Febersjukdomar orsakade av virus överförda av leddjur och virusorsakade hemorragiska febrar	NA
+B00-B09	Virussjukdomar med hudutslag och slemhinneutslag	Viral infections characterized by skin and mucous membrane lesions
+B15-B19	Virushepatit	Viral hepatitis
+B20-B24	Sjukdom orsakad av humant immunbristvirus [HIV]	NA
+B25-B34	Andra virussjukdomar	Other viral diseases
+B35-B49	Svampsjukdomar	Mycoses
+B50-B64	Protozosjukdomar	Protozoal diseases
+B65-B83	Masksjukdomar	Helminthiases
+B85-B89	Lusangrepp, acarinos (angrepp av kvalster) och andra infestationer	Pediculosis, acariasis and other infestations
+B90-B94	Sena effekter av infektionssjukdomar och parasitsjukdomar	Sequelae of infectious and parasitic diseases
+B95-B97	NA	Bacterial and viral infectious agents
+B95-B98	Bakterier, virus och andra infektiösa organismer	NA
+B99-B99	Andra infektionssjukdomar	NA
+C00-C14	Maligna tumörer i läpp, munhåla och svalg	Malignant neoplasms of lip, oral cavity and pharynx
+C00-C75	NA	Malignant neoplasms, stated or presumed to be primary (of specified sites), and certain specified histologies, except neuroendocrine, and of lymphoid, hematopoietic and related tissue
+C00-C96	NA	Malignant neoplasms
+C00-D49	NA	Neoplasms
+C15-C26	Maligna tumörer i matsmältningsorganen	Malignant neoplasms of digestive organs
+C30-C39	Maligna tumörer i andningsorganen och brösthålans organ	Malignant neoplasms of respiratory and intrathoracic organs
+C40-C41	Maligna tumörer i ben och ledbrosk	Malignant neoplasms of bone and articular cartilage
+C43-C44	Melanom och andra maligna tumörer i huden	Melanoma and other malignant neoplasms of skin
+C45-C49	Maligna tumörer i mesotelial (kroppshåletäckande) vävnad och mjukvävnad	Malignant neoplasms of mesothelial and soft tissue
+C50-C50	Malign tumör i bröstkörtel	NA
+C51-C58	Maligna tumörer i de kvinnliga könsorganen	Malignant neoplasms of female genital organs
+C60-C63	Maligna tumörer i de manliga könsorganen	Malignant neoplasms of male genital organs
+C64-C68	Maligna tumörer i urinorganen	Malignant neoplasms of urinary tract
+C69-C72	Maligna tumörer i öga, hjärnan och andra delar av centrala nervsystemet	Malignant neoplasms of eye, brain and other parts of central nervous system
+C73-C75	Maligna tumörer i tyreoidea och andra endokrina körtlar	Malignant neoplasms of thyroid and other endocrine glands
+C76-C80	Maligna tumörer med ofullständigt angivna, sekundära och icke specificerade lokalisationer	Malignant neoplasms of ill-defined, other secondary and unspecified sites
+C81-C96	Maligna tumörer i lymfatisk, blodbildande och besläktad vävnad	Malignant neoplasms of lymphoid, hematopoietic and related tissue
+C97-C97	Flera (primära) maligna tumörer med olika utgångspunkter	NA
+D00-D09	Cancer in situ (lokalt begränsad cancer utgången från epitel)	In situ neoplasms
+D10-D36	Benigna tumörer	Benign neoplasms, except benign neuroendocrine tumors
+D37-D48	Tumörer av osäker eller okänd natur	Neoplasms of uncertain behavior, polycythemia vera and myelodysplastic syndromes
+D50-D53	Nutritionsanemier	Nutritional anemias
+D50-D89	NA	Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism
+D55-D59	Hemolytiska anemier (blodbrist på grund av ökad nedbrytning av röda blodkroppar)	Hemolytic anemias
+D60-D64	Aplastisk anemi (blodbrist på grund av upphörd eller minskad blodbildning i benmärgen) och andra anemier	Aplastic and other anemias and other bone marrow failure syndromes
+D65-D69	Koagulationsrubbningar, purpura (punktformiga blödningar i huden mm) och andra blödningstillstånd	Coagulation defects, purpura and other hemorrhagic conditions
+D70-D77	Andra sjukdomar i blod och blodbildande organ	Other disorders of blood and blood-forming organs
+D80-D89	Vissa rubbningar i immunsystemet	Certain disorders involving the immune mechanism
+E00-E07	Sjukdomar i sköldkörteln	Disorders of thyroid gland
+E00-E89	NA	Endocrine, nutritional and metabolic diseases
+E08-E13	NA	Diabetes mellitus
+E10-E14	Diabetes mellitus	NA
+E15-E16	Andra rubbningar i glukosreglering och bukspottkörtelns inre sekretion	Other disorders of glucose regulation and pancreatic internal secretion
+E20-E35	Sjukdomar i andra endokrina körtlar	Disorders of other endocrine glands
+E40-E46	Näringsbrist	Malnutrition
+E50-E64	Andra näringsbristtillstånd	Other nutritional deficiencies
+E65-E68	Fetma och andra övernäringstillstånd	Overweight, obesity and other hyperalimentation
+E70-E88	NA	Metabolic disorders
+E70-E90	Ämnesomsättningssjukdomar	NA
+F00-F09	Organiska, inklusive symtomatiska, psykiska störningar	NA
+F01-F09	NA	Mental disorders due to known physiological conditions
+F01-F99	NA	Mental, Behavioral and Neurodevelopmental disorders
+F10-F19	Psykiska störningar och beteendestörningar orsakade av psykoaktiva substanser	Mental and behavioral disorders due to psychoactive substance use
+F20-F29	Schizofreni, schizotypa störningar och vanföreställningssyndrom	Schizophrenia, schizotypal, delusional, and other non-mood psychotic disorders
+F30-F39	Förstämningssyndrom	Mood [affective] disorders
+F40-F48	Neurotiska, stressrelaterade och somatoforma syndrom	Anxiety, dissociative, stress-related, somatoform and other nonpsychotic mental disorders
+F50-F59	Beteendestörningar förenade med fysiologiska rubbningar och fysiska faktorer	Behavioral syndromes associated with physiological disturbances and physical factors
+F60-F69	Personlighetsstörningar och beteendestörningar hos vuxna	Disorders of adult personality and behavior
+F70-F79	Psykisk utvecklingsstörning	Intellectual disabilities
+F80-F89	Störningar av psykisk utveckling	Pervasive and specific developmental disorders
+F90-F98	Beteendestörningar och emotionella störningar med debut vanligen under barndom och ungdomstid	Behavioral and emotional disorders with onset usually occurring in childhood and adolescence
+F99-F99	Ospecificerad psykisk störning	NA
+G00-G09	Inflammatoriska sjukdomar i centrala nervsystemet	Inflammatory diseases of the central nervous system
+G00-G99	NA	Diseases of the nervous system
+G10-G14	Systemiska atrofier som primärt engagerar centrala nervsystemet	Systemic atrophies primarily affecting the central nervous system
+G20-G26	Basalgangliesjukdomar och rörelserubbningar	Extrapyramidal and movement disorders
+G30-G32	Andra degenerativa sjukdomar i nervsystemet	Other degenerative diseases of the nervous system
+G35-G37	Myelinförstörande sjukdomar i centrala nervsystemet	Demyelinating diseases of the central nervous system
+G40-G47	Episodiska och paroxysmala sjukdomar	Episodic and paroxysmal disorders
+G50-G59	Sjukdomar i nerver, nervrötter och nervplexus	Nerve, nerve root and plexus disorders
+G60-G64	Polyneuropatier (samtidig sjukdom i flera perifera nerver) och andra sjukdomar i perifera nervsystemet	NA
+G60-G65	NA	Polyneuropathies and other disorders of the peripheral nervous system
+G70-G73	Neuromuskulära transmissionsrubbningar (rubbningar i överföring av impulser mellan nerver och muskler) och sjukdomar i muskler	Diseases of myoneural junction and muscle
+G80-G83	Cerebral pares och andra förlamningssyndrom	Cerebral palsy and other paralytic syndromes
+G89-G99	NA	Other disorders of the nervous system
+G90-G99	Andra sjukdomar i nervsystemet	NA
+H00-H05	NA	Disorders of eyelid, lacrimal system and orbit
+H00-H06	Sjukdomar i ögonlock, tårapparat och ögonhåla	NA
+H00-H59	NA	Diseases of the eye and adnexa
+H10-H11	NA	Disorders of conjunctiva
+H10-H13	Sjukdomar i bindehinnan	NA
+H15-H22	Sjukdomar i senhinnan, hornhinnan, regnbågshinnan och ciliarkroppen	Disorders of sclera, cornea, iris and ciliary body
+H25-H28	Sjukdomar i linsen	Disorders of lens
+H30-H36	Sjukdomar i åderhinnan och näthinnan	Disorders of choroid and retina
+H40-H42	Glaukom (grön starr)	Glaucoma
+H43-H44	NA	Disorders of vitreous body and globe
+H43-H45	Sjukdomar i glaskroppen och ögongloben	NA
+H46-H47	NA	Disorders of optic nerve and visual pathways
+H46-H48	Sjukdomar i synnerven och synbanorna	NA
+H49-H52	Sjukdomar i ögonmusklerna, förändringar i de binokulära rörelserna samt ögats ackommodation och refraktion	Disorders of ocular muscles, binocular movement, accommodation and refraction
+H53-H54	Synstörningar och blindhet	Visual disturbances and blindness
+H55-H57	NA	Other disorders of eye and adnexa
+H55-H59	Andra sjukdomar i ögat och närliggande organ	NA
+H60-H62	Sjukdomar i ytterörat och hörselgången	Diseases of external ear
+H60-H95	NA	Diseases of the ear and mastoid process
+H65-H75	Sjukdomar i mellanörat och mastoidutskottet	Diseases of middle ear and mastoid
+H80-H83	Sjukdomar i innerörat	Diseases of inner ear
+H90-H94	NA	Other disorders of ear
+H90-H95	Andra öronsjukdomar	NA
+I00-I02	Akut reumatisk feber	Acute rheumatic fever
+I00-I99	NA	Diseases of the circulatory system
+I05-I09	Kroniska reumatiska hjärtsjukdomar	Chronic rheumatic heart diseases
+I10-I1	NA	A  Hypertensive diseases
+I10-I15	Hypertonisjukdomar (högt blodtryck och därmed sammanhängande sjukdomar)	NA
+I20-I25	Ischemiska hjärtsjukdomar (sjukdomar orsakade av otillräcklig blodtillförsel till hjärtmuskeln)	Ischemic heart diseases
+I26-I28	Sjukdomstillstånd inom lungcirkulationen	Pulmonary heart disease and diseases of pulmonary circulation
+I30-I5	NA	A  Other forms of heart disease
+I30-I52	Andra former av hjärtsjukdom	NA
+I60-I69	Sjukdomar i hjärnans kärl	Cerebrovascular diseases
+I70-I79	Sjukdomar i artärer, arterioler (småartärer) och kapillärer	Diseases of arteries, arterioles and capillaries
+I80-I89	Sjukdomar i vener, lymfkärl och lymfkörtlar som ej klassificeras annorstädes	Diseases of veins, lymphatic vessels and lymph nodes, not elsewhere classified
+I95-I99	Andra och icke specificerade sjukdomar i cirkulationsorganen	Other and unspecified disorders of the circulatory system
+J00-J06	Akuta infektioner i övre luftvägarna	Acute upper respiratory infections
+J00-J99	NA	Diseases of the respiratory system
+J09-J18	Influensa och lunginflammation	Influenza and pneumonia
+J20-J22	Andra akuta infektioner i nedre luftvägarna	Other acute lower respiratory infections
+J30-J39	Andra sjukdomar i övre luftvägarna	Other diseases of upper respiratory tract
+J40-J4	NA	A  Chronic lower respiratory diseases
+J40-J47	Kroniska sjukdomar i nedre luftvägarna	NA
+J60-J70	Lungsjukdomar av yttre orsaker	Lung diseases due to external agents
+J80-J84	Andra lungsjukdomar som huvudsakligen engagerar interstitiet (lungornas stödjevävnad)	Other respiratory diseases principally affecting the interstitium
+J85-J86	Variga och nekrotiska tillstånd i nedre luftvägarna	Suppurative and necrotic conditions of the lower respiratory tract
+J90-J94	Andra sjukdomar i lungsäcken	Other diseases of the pleura
+J95-J99	Andra sjukdomar i andningsorganen	NA
+J96-J99	NA	Other diseases of the respiratory system
+K00-K14	Sjukdomar i munhåla, spottkörtlar och käkar	Diseases of oral cavity and salivary glands
+K00-K95	NA	Diseases of the digestive system
+K20-K31	Matstrupens, magsäckens och tolvfingertarmens sjukdomar	Diseases of esophagus, stomach and duodenum
+K35-K38	Sjukdomar i blindtarmen	Diseases of appendix
+K40-K46	Bråck	Hernia
+K50-K52	Icke infektiös inflammation i tunntarmen och tjocktarmen	Noninfective enteritis and colitis
+K55-K64	Andra sjukdomar i tarmen	Other diseases of intestines
+K65-K67	Sjukdomar i bukhinnan	NA
+K65-K68	NA	Diseases of peritoneum and retroperitoneum
+K70-K77	Sjukdomar i levern	Diseases of liver
+K80-K87	Sjukdomar i gallblåsan, gallvägarna och bukspottkörteln	Disorders of gallbladder, biliary tract and pancreas
+K90-K93	Andra sjukdomar i matsmältningsorganen	NA
+K90-K95	NA	Other diseases of the digestive system
+L00-L08	Infektioner i hud och underhud	Infections of the skin and subcutaneous tissue
+L00-L99	NA	Diseases of the skin and subcutaneous tissue
+L10-L14	Blåsdermatoser (hudsjukdomar med blåsor)	Bullous disorders
+L20-L30	Dermatit och eksem	Dermatitis and eczema
+L40-L45	Papuloskvamösa sjukdomar	Papulosquamous disorders
+L49-L54	NA	Urticaria and erythema
+L50-L54	Urtikaria (nässelfeber) och erytematösa tillstånd (tillstånd med hudrodnad)	NA
+L55-L59	Strålningsrelaterade sjukdomar i hud och underhud	Radiation-related disorders of the skin and subcutaneous tissue
+L60-L75	Sjukdomar i hår, hårfolliklar, naglar, talgkörtlar och svettkörtlar	Disorders of skin appendages
+L80-L99	Andra sjukdomar i hud och underhud	Other disorders of the skin and subcutaneous tissue
+M00-M02	NA	Infectious arthropathies
+M00-M03	Infektiösa ledsjukdomar	NA
+M00-M25	NA	Arthropathies
+M00-M99	NA	Diseases of the musculoskeletal system and connective tissue
+M05-M14	Inflammatoriska polyartriter	Inflammatory polyarthropathies
+M15-M19	Artros	Osteoarthritis
+M20-M25	Andra ledsjukdomar	Other joint disorders
+M26-M27	NA	Dentofacial anomalies [including malocclusion] and other disorders of jaw
+M30-M36	Inflammatoriska systemsjukdomar	Systemic connective tissue disorders
+M40-M43	Deformerande ryggsjukdomar	Deforming dorsopathies
+M40-M54	NA	Dorsopathies
+M45-M49	Spondylopatier	Spondylopathies
+M50-M54	Andra ryggsjukdomar	Other dorsopathies
+M60-M63	Muskelsjukdomar	Disorders of muscles
+M60-M79	NA	Soft tissue disorders
+M65-M67	NA	Disorders of synovium and tendon
+M65-M68	Sjukdomar i ledhinnor och senor	NA
+M70-M79	Andra sjukdomar i mjukvävnader	Other soft tissue disorders
+M80-M85	Rubbningar i bentäthet och benstruktur	Disorders of bone density and structure
+M80-M94	NA	Osteopathies and chondropathies
+M86-M90	Andra sjukdomar i benvävnad	Other osteopathies
+M91-M94	Sjukdomar i broskvävnad	Chondropathies
+M95-M99	Andra sjukdomar i muskuloskeletala systemet och bindväven	NA
+N00-N08	Glomerulussjukdomar	Glomerular diseases
+N00-N99	NA	Diseases of the genitourinary system
+N10-N16	Tubulo-interstitiella njursjukdomar	Renal tubulo-interstitial diseases
+N17-N19	Njursvikt	Acute kidney failure and chronic kidney disease
+N20-N23	Sten i urinvägarna	Urolithiasis
+N25-N29	Andra sjukdomar i njure och urinledare	Other disorders of kidney and ureter
+N30-N39	Andra sjukdomar i urinorganen	Other diseases of the urinary system
+N40-N51	Sjukdomar i de manliga könsorganen	NA
+N40-N53	NA	Diseases of male genital organs
+N60-N64	Sjukdomar i bröstkörtel	NA
+N60-N65	NA	Disorders of breast
+N70-N77	Inflammatoriska sjukdomar i de kvinnliga bäckenorganen	Inflammatory diseases of female pelvic organs
+N80-N98	Icke inflammatoriska sjukdomar i de kvinnliga könsorganen	Noninflammatory disorders of female genital tract
+N99-N99	Andra sjukliga tillstånd i urin- och könsorganen	NA
+O00-O08	Graviditet som avslutas med abort	Pregnancy with abortive outcome
+O00-O9	NA	A  Pregnancy, childbirth and the puerperium
+O10-O16	Ödem, proteinuri (äggvita i urinen) och hypertoni under graviditet, förlossning och barnsängstid	Edema, proteinuria and hypertensive disorders in pregnancy, childbirth and the puerperium
+O20-O29	Andra sjukdomar hos den blivande modern i huvudsak sammanhängande med graviditeten	Other maternal disorders predominantly related to pregnancy
+O30-O48	Vård under graviditet på grund av problem relaterade till fostret och amnionhålan samt befarade förlossningsproblem	Maternal care related to the fetus and amniotic cavity and possible delivery problems
+O60-O75	Komplikationer vid värkarbete och förlossning	NA
+O60-O77	NA	Complications of labor and delivery
+O80-O82	NA	Encounter for delivery
+O80-O84	Förlossning	NA
+O85-O92	Komplikationer huvudsakligen sammanhängande med barnsängstiden	Complications predominantly related to the puerperium
+O94-O9	NA	A  Other obstetric conditions, not elsewhere classified
+O94-O99	Andra obstetriska tillstånd som ej klassificeras annorstädes (O94-O99)	NA
+P00-P04	Foster och nyfödd som påverkats av tillstånd hos modern och av komplikationer vid graviditet, värkarbete och förlossning	Newborn affected by maternal factors and by complications of pregnancy, labor, and delivery
+P00-P96	NA	Certain conditions originating in the perinatal period
+P05-P08	Sjukdomar som har samband med graviditetslängd och fostertillväxt	Disorders of newborn related to length of gestation and fetal growth
+P10-P15	Förlossningsskador	Birth trauma
+P19-P29	NA	Respiratory and cardiovascular disorders specific to the perinatal period
+P20-P29	Sjukdomar i andningsorgan och cirkulationsorgan specifika för den perinatala perioden	NA
+P35-P39	Infektioner specifika för den perinatala perioden	Infections specific to the perinatal period
+P50-P61	Blödningssjukdomar och blodsjukdomar hos foster och nyfödd	Hemorrhagic and hematological disorders of newborn
+P70-P74	Övergående endokrina rubbningar och ämnesomsättningsrubbningar specifika för foster och nyfödd	Transitory endocrine and metabolic disorders specific to newborn
+P75-P78	Sjukdomar i matsmältningsorganen hos foster och nyfödd	NA
+P76-P78	NA	Digestive system disorders of newborn
+P80-P83	Tillstånd som engagerar hud och temperaturreglering hos foster och nyfödd	Conditions involving the integument and temperature regulation of newborn
+P90-P96	Andra sjukdomar och rubbningar under den perinatala perioden	Other disorders originating in the perinatal period
+Q00-Q07	Medfödda missbildningar av nervsystemet	Congenital malformations of the nervous system
+Q00-Q99	NA	Congenital malformations, deformations and chromosomal abnormalities
+Q10-Q18	Medfödda missbildningar av öga, öra, ansikte och hals	Congenital malformations of eye, ear, face and neck
+Q20-Q28	Medfödda missbildningar av cirkulationsorganen	Congenital malformations of the circulatory system
+Q30-Q34	Medfödda missbildningar av andningsorganen	Congenital malformations of the respiratory system
+Q35-Q37	Kluven läpp och gom	Cleft lip and cleft palate
+Q38-Q45	Andra medfödda missbildningar av matsmältningsorganen	Other congenital malformations of the digestive system
+Q50-Q56	Medfödda missbildningar av könsorganen	Congenital malformations of genital organs
+Q60-Q64	Medfödda missbildningar av urinorganen	Congenital malformations of the urinary system
+Q65-Q79	Medfödda missbildningar och deformiteter av muskler och skelett	Congenital malformations and deformations of the musculoskeletal system
+Q80-Q89	Andra medfödda missbildningar	Other congenital malformations
+Q90-Q99	Kromosomavvikelser som ej klassificeras annorstädes	Chromosomal abnormalities, not elsewhere classified
+R00-R09	Symtom och sjukdomstecken från cirkulationsorganen och andningsorganen	Symptoms and signs involving the circulatory and respiratory systems
+R00-R99	NA	Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified
+R10-R19	Symtom och sjukdomstecken från matsmältningsorganen och buken	Symptoms and signs involving the digestive system and abdomen
+R20-R23	Symtom och sjukdomstecken från huden och underhuden	Symptoms and signs involving the skin and subcutaneous tissue
+R25-R29	Symtom och sjukdomstecken från nervsystemet och muskuloskeletala systemet	Symptoms and signs involving the nervous and musculoskeletal systems
+R30-R39	Symtom och sjukdomstecken från urinorganen	Symptoms and signs involving the genitourinary system
+R40-R46	Symtom och sjukdomstecken avseende intellektuella funktioner, uppfattningsförmåga, känsloläge och beteende	Symptoms and signs involving cognition, perception, emotional state and behavior
+R47-R49	Symtom och sjukdomstecken avseende talet och rösten	Symptoms and signs involving speech and voice
+R50-R69	Allmänna symtom och sjukdomstecken	General symptoms and signs
+R70-R79	Onormala fynd vid blodundersökning utan diagnos	Abnormal findings on examination of blood, without diagnosis
+R80-R82	Onormala fynd vid urinundersökning utan diagnos	Abnormal findings on examination of urine, without diagnosis
+R83-R89	Onormala fynd vid undersökning av andra kroppsvätskor, substanser och vävnader, utan diagnos	Abnormal findings on examination of other body fluids, substances and tissues, without diagnosis
+R90-R94	Onormala fynd vid radiologisk diagnostik och vid funktionsundersökning utan diagnos	Abnormal findings on diagnostic imaging and in function studies, without diagnosis
+R95-R99	Ofullständigt definierade och okända orsaker till död	NA
+S00-S09	Skador på huvudet	Injuries to the head
+S00-T88	NA	Injury, poisoning and certain other consequences of external causes
+S10-S19	Skador på halsen	Injuries to the neck
+S20-S29	Skador i bröstregionen	Injuries to the thorax
+S30-S39	Skador i buken, nedre delen av ryggen, ländkotpelaren och bäckenet	Injuries to the abdomen, lower back, lumbar spine, pelvis and external genitals
+S40-S49	Skador på skuldra och överarm	Injuries to the shoulder and upper arm
+S50-S59	Skador på armbåge och underarm	Injuries to the elbow and forearm
+S60-S69	Skador på handled och hand	Injuries to the wrist, hand and fingers
+S70-S79	Skador på höft och lår	Injuries to the hip and thigh
+S80-S89	Skador på knä och underben	Injuries to the knee and lower leg
+S90-S99	Skador på fotled och fot	Injuries to the ankle and foot
+T00-T07	Skador som engagerar flera kroppsregioner	NA
+T07-T88	NA	Injury, poisoning and certain other consequences of external causes
+T08-T14	Skador på icke specificerad del av bålen, extremitet eller annan kroppsregion	NA
+T15-T19	Effekter av främmande kropp som trängt in genom naturlig öppning	Effects of foreign body entering through natural orifice
+T20-T25	Brännskador och frätskador på yttre kroppsyta med specificerad lokalisation	Burns and corrosions of external body surface, specified by site
+T20-T32	NA	Burns and corrosions
+T26-T28	Brännskador och frätskador begränsade till ögat och inre organ	Burns and corrosions confined to eye and internal organs
+T29-T32	Brännskador och frätskador på multipla och icke specificerade kroppsregioner	NA
+T30-T32	NA	Burns and corrosions of multiple and unspecified body regions
+T33-T34	NA	Frostbite
+T33-T35	Köldskada	NA
+T36-T50	Förgiftning av droger, läkemedel och biologiska substanser	Poisoning by, adverse effect of and underdosing of drugs, medicaments and biological substances
+T51-T65	Toxisk effekt av substanser med i huvudsak icke-medicinsk användning	Toxic effects of substances chiefly nonmedicinal as to source
+T66-T78	Andra och icke specificerade effekter av yttre orsaker	Other and unspecified effects of external causes
+T79-T79	Vissa tidiga komplikationer till skada genom yttre våld	NA
+T80-T88	Komplikationer till kirurgiska åtgärder och medicinsk vård som ej klassificeras annorstädes	Complications of surgical and medical care, not elsewhere classified
+T90-T98	Sena besvär av skador, förgiftningar och andra följder av yttre orsaker	NA
+U00-U49	Interimistiska koder för nya sjukdomar med osäker etiologi eller koder som kan tas i bruk med kort varsel	Provisional assignment of new diseases of uncertain etiology or emergency use
+U00-U85	NA	Codes for special purposes
+U82-U85	Resistens mot antimikrobiella och antineoplastiska läkemedel (U82-U85)	NA
+U98-U99	Koder för särskilda nationella behov	NA
+UA-UA	UA	NA
+UB-UB	UB	NA
+UP-UP	UP	NA
+V00-V09	NA	Pedestrian injured in transport accident
+V00-V99	NA	Transport accidents
+V00-X58	NA	Accidents
+V00-Y99	NA	External causes of morbidity
+V01-V09	Fotgängare skadad i transportolycka	NA
+V10-V19	Cyklist (förare eller passagerare) skadad i transportolycka	Pedal cycle rider injured in transport accident
+V20-V29	Motorcyklist (förare eller passagerare) skadad i transportolycka	Motorcycle rider injured in transport accident
+V30-V39	Förare av eller passagerare i trehjuligt motorfordon skadad i transportolycka	Occupant of three-wheeled motor vehicle injured in transport accident
+V40-V49	Förare av eller passagerare i personbil skadad i transportolycka	Car occupant injured in transport accident
+V50-V59	Förare av eller passagerare i lätt lastbil skadad i transportolycka	Occupant of pick-up truck or van injured in transport accident
+V60-V69	Förare av eller passagerare i tung lastbil skadad i transportolycka	Occupant of heavy transport vehicle injured in transport accident
+V70-V79	Förare av eller passagerare i buss skadad i transportolycka	Bus occupant injured in transport accident
+V80-V89	Andra transportolyckor på land	Other land transport accidents
+V90-V94	Transportolyckor på vatten	Water transport accidents
+V95-V97	Transportolyckor i luften och rymden	Air and space transport accidents
+V98-V99	Andra och icke specificerade transportolyckor	Other and unspecified transport accidents
+W00-W19	Fallolyckor	Slipping, tripping, stumbling and falls
+W00-X58	NA	Other external causes of accidental injury
+W20-W49	Exponering för icke levande mekaniska krafter	Exposure to inanimate mechanical forces
+W50-W64	Exponering för levande mekaniska krafter	Exposure to animate mechanical forces
+W65-W74	Drunkning och drunkningstillbud genom olyckshändelse	Accidental non-transport drowning and submersion
+W75-W84	Annan kvävning och annat kvävningstillbud genom olyckshändelse	NA
+W85-W99	Exponering för elektrisk ström, strålning, extrem lufttemperatur och extremt lufttryck i omgivningen	Exposure to electric current, radiation and extreme ambient air temperature and pressure
+X00-X08	NA	Exposure to smoke, fire and flames
+X00-X09	Exponering för rök och öppen eld	NA
+X10-X19	Kontakt med heta föremål och heta ämnen	Contact with heat and hot substances
+X20-X29	Kontakt med giftiga djur och växter	NA
+X30-X39	Exponering för naturkrafter	Exposure to forces of nature
+X40-X49	Förgiftningsolyckor och exponering för skadliga ämnen genom olyckshändelse	NA
+X50-X57	Överansträngning och umbäranden	NA
+X52-X58	NA	Accidental exposure to other specified factors
+X58-X59	Exponering genom olyckshändelse för andra och icke specificerade faktorer	NA
+X60-X84	Avsiktligt självdestruktiv handling	NA
+X71-X83	NA	Intentional self-harm
+X85-Y09	Övergrepp av annan person	NA
+X92-Y09	NA	Assault
+Y10-Y34	Skadehändelser med oklar avsikt	NA
+Y21-Y33	NA	Event of undetermined intent
+Y35-Y36	Polisingripande och krigshandling	NA
+Y35-Y38	NA	Legal intervention, operations of war, military operations, and terrorism
+Y40-Y59	Läkemedel, droger och biologiska substanser i terapeutiskt bruk som orsak till ogynnsam effekt	NA
+Y60-Y69	Missöden som inträffat med patienter under kirurgisk och medicinsk vård	NA
+Y62-Y69	NA	Misadventures to patients during surgical and medical care
+Y62-Y84	NA	Complications of medical and surgical care
+Y70-Y82	Missöden orsakade av medicinska instrument i diagnostiskt och terapeutiskt bruk	Medical devices associated with adverse incidents in diagnostic and therapeutic use
+Y83-Y84	Kirurgiska och andra medicinska åtgärder som orsak till onormal reaktion eller sen komplikation hos patient utan anknytning till missöde vid operations- eller behandlingstillfället	Surgical and other medical procedures as the cause of abnormal reaction of the patient, or of later complication, without mention of misadventure at the time of the procedure
+Y85-Y89	Sena effekter av yttre orsaker till sjukdom och död	NA
+Y90-Y98	Bidragande faktorer som har samband med yttre orsaker till sjukdom och död, vilka klassificeras annorstädes	NA
+Y90-Y99	NA	Supplementary factors related to causes of morbidity classified elsewhere
+Z00-Z13	Kontakt med hälso- och sjukvården för undersökning och utredning	Persons encountering health services for examinations
+Z00-Z99	NA	Factors influencing health status and contact with health services
+Z14-Z15	NA	Genetic carrier and genetic susceptibility to disease
+Z20-Z29	Potentiella hälsorisker avseende smittsamma sjukdomar	Persons with potential health hazards related to communicable diseases
+Z30-Z39	Kontakter med hälso- och sjukvården i samband med fortplantning	Persons encountering health services in circumstances related to reproduction
+Z40-Z53	NA	Encounters for other specific health care
+Z40-Z54	Kontakter med hälso- och sjukvården för speciella åtgärder och vård	NA
+Z55-Z65	Potentiella hälsorisker avseende socioekonomiska och psykosociala förhållanden	Persons with potential health hazards related to socioeconomic and psychosocial circumstances
+Z69-Z76	NA	Persons encountering health services in other circumstances
+Z70-Z76	Kontakter med hälso- och sjukvården i andra situationer	NA
+Z77-Z99	NA	Persons with potential health hazards related to family and personal history and certain conditions influencing health status
+Z80-Z99	Potentiella hälsorisker i familjens och patientens sjukhistoria samt vissa tillstånd och förhållanden som påverkar hälsan	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA
+NA	NA	NA

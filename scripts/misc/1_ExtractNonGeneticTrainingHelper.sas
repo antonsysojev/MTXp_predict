@@ -1,0 +1,204 @@
+*### LAST VERSION UPDATE 26 APRIL 2024 (v1.1) - NOW MOVED INTO THE NOVEL PIPELINE!
+*### THIS HELPER SCRIPTS EXTRACTS SUBSETS OF THE DESIRED REGISTERS, BASED ON AN INPUT SET OF `pid`;
+
+*#! Note that this needs you to run `misc/1_ExtractCohort.R` a priori, to extract the cohort used within this script to subset the registers.;
+
+LIBNAME IN 'H:\Projects\MTX_PREDICT\data\raw';
+LIBNAME LISA 'K:\Reuma\RASPA 2021\01. Data Warehouse\01. Processed Data\06. SCB';
+LIBNAME TPR 'K:\Reuma\RASPA 2021\01. Data Warehouse\02. Raw Data\01. Population';
+LIBNAME MGR 'K:\Reuma\RASPA 2021\01. Data Warehouse\02. Raw Data\02. MGR';
+LIBNAME SRQ 'K:\Reuma\RASPA 2021\01. Data Warehouse\01. Processed Data\01. SRQ';
+LIBNAME NPR 'K:\Reuma\RASPA 2021\01. Data Warehouse\02. Raw Data\04. NPR';
+LIBNAME PDR 'K:\Reuma\RASPA 2021\01. Data Warehouse\02. Raw Data\05. PDR';
+LIBNAME OUT 'H:\Projects\MTX_PREDICT\data\raw\registers';
+
+
+* --- --- --- CREATE THE COMBINED EIRA + SRQB PARTICIPANT FILE --- --- ---;
+
+PROC IMPORT DATAFILE = 'H:\Projects\MTX_PREDICT\data\COHORT.tsv'
+	OUT = RAW_PID_CLEAN
+	DBMS=DLM;
+	delimiter='09'x;
+run;
+
+*#NOTE THAT WE DO NOT FILTER ON INCLUSION DATE HERE, WE DO NOT NEED TO DO THIS SINCE THE SCRIPT IS SOLELY TO EXTRACT A 'SMALLER' VERSION OF THE RAW REGISTERS;
+
+* --- --- --- SUBSET THE RAW REGISTER DATA TO ONLY THE TARGET INDIVIDUALS --- --- ---;
+* --- --- --- | --- --- --- LISA REGISTER --- --- --- | --- --- ---;
+
+PROC SQL;
+	CREATE TABLE LISA_SUB AS
+	SELECT *
+	FROM LISA.LISA_WIDE (KEEP = pid SUN:)
+	WHERE pid IN (SELECT DISTINCT pid FROM RAW_PID_CLEAN)
+	ORDER BY pid;
+quit;
+
+DATA OUT.LISA_SUB; SET LISA_SUB; run;
+
+* --- --- --- | --- --- --- TPR --- --- --- | --- --- ---;
+
+* Encoding is proving problematic so brute force it to be read into SAS...;
+DATA TPR_CLEAN; SET TPR.DEMOGRAPHICS(encoding=any); run;
+
+PROC SQL;
+	CREATE TABLE TPR_SUB AS
+	SELECT pid, kon, birthdate, fodelselandgrupp
+	FROM TPR_CLEAN
+	WHERE pid IN (SELECT DISTINCT pid FROM RAW_PID_CLEAN)
+	ORDER BY pid;
+quit;
+
+DATA OUT.TPR_SUB; SET TPR_SUB; run;
+
+* --- --- --- | --- --- --- MGR --- --- --- | --- --- ---;
+
+PROC SQL;
+	CREATE TABLE MGR_LONG AS
+	(SELECT pid, pid_sibling AS pid_rel, syskontyp AS reltyp
+	 FROM MGR.SIBLINGS
+	 OUTER UNION CORR
+	 SELECT pid, pid_child AS pid_rel, "Barn" AS reltyp
+	 FROM MGR.CHILDREN)
+	 	OUTER UNION CORR
+	(SELECT pid, pid_father AS pid_rel, "Father" AS reltyp
+	 FROM MGR.PARENTS
+	 OUTER UNION CORR
+	 SELECT pid, pid_mother AS pid_rel, "Mother" AS reltyp
+	 FROM MGR.PARENTS)
+	ORDER BY pid;
+quit;
+
+PROC SQL;
+	CREATE TABLE MGR_SUB AS
+	SELECT *
+	FROM MGR_LONG
+	WHERE pid IN (SELECT DISTINCT pid FROM RAW_PID_CLEAN)
+	ORDER BY pid;
+quit;
+
+DATA OUT.MGR_SUB; SET MGR_SUB; run;
+
+* --- --- --- | --- --- --- | --- --- --- NPR FOR MGR_REL --- --- --- | --- --- --- | --- --- ---;
+
+PROC SQL;
+	CREATE TABLE MGR_SUB_REL AS
+	SELECT DISTINCT pid_rel
+	FROM MGR_SUB
+	WHERE NOT pid_rel = .
+	ORDER BY pid_rel;
+quit;
+
+*# THE ABOVE SET CONTAINS `pid` FOR ALL RELATIVES (OF ALL TYPES) OF OUR INDIVIDUALS WITHOUT A MISSING `pid`;
+
+DATA NPR_INPAT_CLEAN; SET NPR.IN(encoding = any); run;
+
+PROC SQL;
+	CREATE TABLE NPR_INPAT_REL_SUB AS
+	SELECT pid, INDATUM, HDIA
+	FROM NPR_INPAT_CLEAN
+	WHERE pid IN (SELECT DISTINCT pid_rel FROM MGR_SUB_REL)
+	ORDER BY pid;
+quit;
+
+*# THE ABOVE SET CONTAINS ALL INPATIENT VISITS FOR ALL THE RELATIVES IN THE `MGR_SUB_REL` DATA SET;
+
+PROC SQL;
+	CREATE TABLE NPR_OUTPAT_REL_SUB AS
+	SELECT pid, INDATUM, HDIA
+	FROM NPR.OUT
+	WHERE pid IN (SELECT DISTINCT pid_rel FROM MGR_SUB_REL)
+	ORDER BY pid;
+quit;
+
+PROC SQL;
+	CREATE TABLE NPR_REL_SUB AS
+	SELECT * FROM NPR_INPAT_REL_SUB
+	OUTER UNION CORR
+	SELECT * FROM NPR_INPAT_REL_SUB
+	ORDER BY pid;
+quit;
+
+*# THEN WE FINALLY COMBINE THEM INTO A SINGLE DATA SET CONTAINING ALL IN AND OUTPATIENT VISITS FOR ALL THE RELATIVES IN THE `MGR_SUB_REL` DATA;
+
+DATA OUT.NPR_REL_SUB; SET NPR_REL_SUB; run;
+
+* --- --- --- | --- --- --- SRQ_BASDATA --- --- --- | --- --- ---;
+
+DATA SRQ_BASDATA_CLEAN; SET SRQ.SRQ_BASDATA(encoding=any); run;
+
+PROC SQL;
+	CREATE TABLE SRQ_BASDATA_SUB AS
+	SELECT *
+	FROM SRQ_BASDATA_CLEAN
+	WHERE pid IN (SELECT DISTINCT pid FROM RAW_PID_CLEAN)
+	ORDER BY pid;
+quit;
+
+DATA OUT.SRQ_BASDATA_SUB; SET SRQ_BASDATA_SUB; run;
+
+* --- --- --- | --- --- --- SRQ_BESOKSDATA --- --- --- | --- --- ---;
+
+DATA SRQ_BESOKSDATA_CLEAN; SET SRQ.SRQ_BESOKSDATA(encoding=any); run;
+
+PROC SQL;
+	CREATE TABLE SRQ_BESOKSDATA_SUB AS
+	SELECT *
+	FROM SRQ_BESOKSDATA_CLEAN
+	WHERE pid IN (SELECT DISTINCT pid FROM RAW_PID_CLEAN)
+	ORDER BY pid;
+quit;
+
+DATA OUT.SRQ_BESOKSDATA_SUB; SET SRQ_BESOKSDATA_SUB; run;
+
+* --- --- --- | --- --- --- SRQ_TERAPI --- --- --- | --- --- ---;
+
+DATA SRQ_TERAPI_CLEAN; SET SRQ.SRQ_TERAPI(encoding=any); run;
+
+PROC SQL;
+	CREATE TABLE SRQ_TERAPI_SUB AS
+	SELECT *
+	FROM SRQ_TERAPI_CLEAN
+	WHERE pid IN (SELECT DISTINCT pid FROM RAW_PID_CLEAN)
+	ORDER BY pid;
+quit;
+
+DATA OUT.SRQ_TERAPI_SUB; SET SRQ_TERAPI_SUB; run;
+
+* --- --- --- | --- --- --- NPR --- --- --- | --- --- ---;
+
+DATA NPR_INPAT_CLEAN; SET NPR.IN(encoding = any); run;
+
+PROC SQL;
+	CREATE TABLE NPR_INPAT_SUB AS
+	SELECT pid, INDATUM, UTDATUM, HDIA
+	FROM NPR_INPAT_CLEAN
+	WHERE pid IN (SELECT DISTINCT pid FROM RAW_PID_CLEAN)
+	ORDER BY pid;
+quit;
+
+DATA OUT.NPR_INPAT_SUB; SET NPR_INPAT_SUB; run;
+
+PROC SQL;
+	CREATE TABLE NPR_OUTPAT_SUB AS 
+	SELECT pid, INDATUM, HDIA
+	FROM NPR.OUT
+	WHERE pid IN (SELECT DISTINCT pid FROM RAW_PID_CLEAN)
+	ORDER BY pid;
+quit;
+
+DATA OUT.NPR_OUTPAT_SUB; SET NPR_OUTPAT_SUB; run;
+
+* --- --- --- | --- --- --- PDR --- --- --- | --- --- ---;
+
+PROC SQL;
+	CREATE TABLE PDR_SUB AS
+	SELECT pid, EDATUM, ATC, TKOST
+	FROM PDR.LMED
+	WHERE pid IN (SELECT DISTINCT pid FROM RAW_PID_CLEAN)
+	ORDER BY pid;
+quit;
+
+DATA OUT.PDR_SUB;
+	SET PDR_SUB;
+run;
