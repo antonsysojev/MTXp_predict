@@ -3,19 +3,19 @@
 
 *#! Note that this needs you to run `misc/1_ExtractCohort.R` a priori, to extract the cohort used within this script to subset the registers.;
 
-LIBNAME IN 'H:\Projects\MTX_PREDICT\data\raw';
+LIBNAME IN 'K:\HW\people\Anton Öberg Sysojev\MTXp_predict\data\raw';
 LIBNAME LISA 'K:\Reuma\RASPA 2021\01. Data Warehouse\01. Processed Data\06. SCB';
 LIBNAME TPR 'K:\Reuma\RASPA 2021\01. Data Warehouse\02. Raw Data\01. Population';
 LIBNAME MGR 'K:\Reuma\RASPA 2021\01. Data Warehouse\02. Raw Data\02. MGR';
 LIBNAME SRQ 'K:\Reuma\RASPA 2021\01. Data Warehouse\01. Processed Data\01. SRQ';
 LIBNAME NPR 'K:\Reuma\RASPA 2021\01. Data Warehouse\02. Raw Data\04. NPR';
 LIBNAME PDR 'K:\Reuma\RASPA 2021\01. Data Warehouse\02. Raw Data\05. PDR';
-LIBNAME OUT 'H:\Projects\MTX_PREDICT\data\raw\registers';
+LIBNAME OUT 'K:\HW\people\Anton Öberg Sysojev\MTXp_predict\data\raw\registers';
 
 
 * --- --- --- CREATE THE COMBINED EIRA + SRQB PARTICIPANT FILE --- --- ---;
 
-PROC IMPORT DATAFILE = 'H:\Projects\MTX_PREDICT\data\COHORT.tsv'
+PROC IMPORT DATAFILE = ':\HW\people\Anton Öberg Sysojev\MTXp_predict\data\COHORT.tsv'
 	OUT = RAW_PID_CLEAN
 	DBMS=DLM;
 	delimiter='09'x;

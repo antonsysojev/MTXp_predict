@@ -31,15 +31,15 @@ for(i in 1:nrow(id.df)){
 
 auc.complete.df <- auc.list %>% bind_rows()
 
-### TABLE 1.
+### MAIN RESULTS TABLE.
 
 order.model.idx <- data.frame(MODEL = c("LOGREG", "GLMNET", "RNDFOR", "XGBOST"), IDX.MODEL = 1:4)
 order.outcome.idx <- data.frame(ID = c("persistence_d365 - PRIMARY", "persistence_d1096 - PRIMARY"), IDX.OUTCOME = 1:2)
 auc.complete.df %>% filter(str_detect(ID, "persistence")) %>% filter(str_detect(ID, "PRIMARY")) %>%
   left_join(order.model.idx, by = "MODEL") %>% left_join(order.outcome.idx, by = "ID") %>% arrange(IDX.OUTCOME, IDX.MODEL) %>%
-  select(-IDX.MODEL, -IDX.OUTCOME) %>% write.xlsx("data/output/res/Table1.tsv")
+  select(-IDX.MODEL, -IDX.OUTCOME) %>% write.xlsx("data/output/res/AUCPrimary.tsv")
 
-### TABLE S10.
+### SECONDARY RESULTS TABLE - SUBGROUPS.
 
 order.model.idx <- data.frame(MODEL = c("LOGREG", "GLMNET", "RNDFOR", "XGBOST"), IDX.MODEL = 1:4)
 order.outcome.idx <- data.frame(OUTCOME = c("persistence_d365", "persistence_d1096"), IDX.OUTCOME = 1:2)
@@ -50,9 +50,9 @@ auc.complete.df %>% filter(!str_detect(ID, "PRIMARY")) %>%
   left_join(order.model.idx, by = "MODEL") %>% left_join(order.outcome.idx, by = "OUTCOME") %>% left_join(order.type.idx, by = "TYPE") %>%
   arrange(IDX.TYPE, IDX.OUTCOME, IDX.MODEL) %>% 
   select(-IDX.TYPE, -IDX.OUTCOME, -IDX.MODEL, -OUTCOME, -TYPE) %>%
-  write.xlsx("data/output/res/TableS10.tsv")
+  write.xlsx("data/output/res/AUCSecondarySubgroup.tsv")
   
-### TABLE S11.
+### SECONDARY RESULTS TABLE - ALTERNATIVE OUTCOMES.
 
 order.model.idx <-data.frame(MODEL = c("LOGREG", "GLMNET", "RNDFOR", "XGBOST"), IDX.MODEL = 1:4)
 order.outcome.idx <- data.frame(OUTCOME = c("remission_retention_d365", "remission_retention_d1096", "discontinuation_d365", "discontinuation_d1096", "das28_remission_m12", "eular_response_m6"), IDX.OUTCOME = 1:6)
@@ -61,4 +61,4 @@ auc.complete.df %>% filter(!str_detect(ID, "persistence")) %>%
   mutate(OUTCOME = str_extract(ID, "^[^ ]+")) %>% 
   left_join(order.model.idx, by = "MODEL") %>% left_join(order.outcome.idx, by = "OUTCOME") %>% arrange(IDX.OUTCOME, IDX.MODEL) %>% 
   select(-IDX.MODEL, -IDX.OUTCOME, -OUTCOME) %>%
-  write.xlsx("data/output/res/TableS11.tsv")
+  write.xlsx("data/output/res/AUCSecondaryOutcomes.tsv")

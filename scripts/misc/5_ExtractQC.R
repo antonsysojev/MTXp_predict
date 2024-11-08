@@ -18,4 +18,4 @@ qc.ind.0 <- qc.df %>% filter(str_detect(QC, "\\d+ samples .+ loaded")) %>% mutat
 
 ### 2. CLEANING UP DATA
 
-qc.snp %>% bind_rows(qc.snp.0) %>% bind_rows(qc.ind) %>% bind_rows(qc.ind.0) %>% arrange(STEP) %>% write.table("data/output/res/TableS5.qc", col.names = T, row.names = F, sep = "\t", quote = F)
+qc.snp %>% bind_rows(qc.snp.0) %>% bind_rows(qc.ind) %>% bind_rows(qc.ind.0) %>% arrange(STEP) %>% write.table("data/output/res/TableQC.tsv", col.names = T, row.names = F, sep = "\t", quote = F)

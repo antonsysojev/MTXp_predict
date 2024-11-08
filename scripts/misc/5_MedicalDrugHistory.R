@@ -44,5 +44,5 @@ counts.df <- counts.wide.df %>% mutate(VAR.ID = str_replace(VAR.ID, "\\_", "\\-"
 medical.counts <- counts.df %>% filter(!is.na(ICD.swe)) %>% mutate(ICD = str_c(str_replace_na(ICD.eng, ""), "(", VAR.ID, ")")) %>% select(ICD, everything()) %>% select(-VAR.ID, -ICD.swe, -ICD.eng)
 drug.counts <- counts.df %>% filter(is.na(ICD.swe)) %>% select(-ICD.swe, -ICD.eng)
 
-write.xlsx(medical.counts, "data/output/res/TableS3.xlsx")
-write.xlsx(drug.counts, "data/output/res/TableS4.xlsx")
+write.xlsx(medical.counts, str_c(FOLDERPATH, "data/output/res/TableMedicalHistory.xlsx"))
+write.xlsx(drug.counts, str_c(FOLDERPATH, "data/output/res/TableDrugHistory.xlsx"))

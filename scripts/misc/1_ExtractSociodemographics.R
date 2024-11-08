@@ -1,7 +1,7 @@
-### LAST UPDATED 26 APRIL 2024 (v1.0).
+### LAST UPDATED 26 AUGUST 2024 (v1.1).
 ### THIS SCRIPT EXTRACTS SOCIODEMOGRAPIC TRAINING DATA FOR THE GIVEN COHORT.
 
-.libPaths("H:/Programs/RLibrary/")
+#.libPaths("H:/Programs/RLibrary/")
 library(dplyr)
 library(haven)
 library(lubridate)
@@ -13,11 +13,11 @@ register.sas.files <- str_c(c("tpr", "lisa", "fsk", "npr_rel", "npr_inpat", "pdr
 register.ls <- list.files("H:/Projects/MTX_PREDICT/data/raw/registers/")
 if(!all(register.sas.files %in% register.ls)) stop("ERROR: Failed to find all the registers...")      #LOOK FOR THE REGISTERS!
 
-df <- read_tsv("H:/Projects/MTX_PREDICT/data/COHORT.tsv", show_col_types = F)
+df <- read_tsv(paste0(FOLDERPATH, "data/COHORT.tsv"), show_col_types = F)
 
 ### 1. TOTAL POPULATION REGISTER
 
-tpr.clean <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/tpr_sub.sas7bdat") %>%
+tpr.clean <- read_sas(paste0(FOLDERPATH, "data/raw/registers/tpr_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>%
   mutate(AGE = floor(interval(birthdate, index_date) / years(1))) %>%
   mutate(BORN_IN_SWEDEN = ifelse(fodelselandgrupp == "Sverige", 1, 0)) %>%
@@ -26,7 +26,7 @@ tpr.clean <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/tpr_sub.sas7bd
 
 ### 2. LISA REGISTER
 
-lisa.clean <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/lisa_sub.sas7bdat") %>%
+lisa.clean <- read_sas(paste0(FOLDERPATH, "data/raw/registers/lisa_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>%
   pivot_longer(cols = starts_with("Sun"), names_to = "SUN", values_to = "SUN_VAL") %>%
   mutate(SUN_YEAR = str_extract(SUN, "\\d+$")) %>%
@@ -42,9 +42,9 @@ lisa.clean <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/lisa_sub.sas7
 
 ### 3. MULTI-GENERATION REGISTER
 
-npr.rel.raw <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/npr_rel_sub.sas7bdat")
+npr.rel.raw <- read_sas(paste0(FOLDERPATH, "data/raw/registers/npr_rel_sub.sas7bdat"))
   
-mgr.clean <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/mgr_sub.sas7bdat") %>%
+mgr.clean <- read_sas(paste0(FOLDERPATH, "data/raw/registers/mgr_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>%
   filter(!is.na(pid_rel)) %>%     #REMOVE THOSE WITHOUT ANY RELATIVES IN MGR - NEEDED SINCE WE DO LEFT_JOIN BUT MORE CLEAR THIS WAY
   filter(reltyp %in% c("Mother", "Father", "Helsyskon", "Barn")) %>%     #IDENTIFY ALL FIRST-DEGREE RELATIVES
@@ -58,19 +58,19 @@ rm(npr.rel.raw)
 
 ### 4. FORSAKRINGSKASSAN
 
-fsk.clean <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/fsk_sub.sas7bdat") %>%
+fsk.clean <- read_sas(paste0(FOLDERPATH, "data/raw/registers/fsk_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>%
   distinct(pid, DisabilityPension_Days = DP_days_1, SickLeave_Days = SL_days_1)
 
 ### 5. SRQ BASDATA
 
-srq.clean<- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/srq_basdata_sub.sas7bdat") %>%
+srq.clean<- read_sas(paste0(FOLDERPATH, "data/raw/registers/srq_basdata_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>% 
   distinct(pid, duration)
 
 ### 6. NPR HOSPITALIZATIONS
 
-npr.clean <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/npr_inpat_sub.sas7bdat") %>%
+npr.clean <- read_sas(paste0(FOLDERPATH, "data/raw/registers/npr_inpat_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>%
   filter(between(INDATUM, index_date - years(1), index_date)) %>%
   mutate(DAYS_IN_TIME = interval(INDATUM, UTDATUM) / days(1) + 1) %>%    #SEE NOTE 2.1 ABOUT THE PLUS 1
@@ -79,7 +79,7 @@ npr.clean <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/npr_inpat_sub.
 
 ### 7. PRESCRIBED DRUG REGISTER
 
-pdr.clean <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/pdr_sub.sas7bdat") %>%
+pdr.clean <- read_sas(paste0(FOLDERPATH, "data/raw/registers/pdr_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>% 
   filter(between(EDATUM, index_date - years(1), index_date)) %>%
   group_by(pid) %>% summarise(TOTAL_TKOST = sum(TKOST)) %>% ungroup()
@@ -96,9 +96,9 @@ df %>% left_join(tpr.clean, by = "pid") %>%
   mutate(TIME_INHOSP = ifelse(is.na(TOTAL_DAYS_IN_TIME), 0, TOTAL_DAYS_IN_TIME), 
          COST_DRUG = ifelse(is.na(TOTAL_TKOST), 0, TOTAL_TKOST), 
          FDR_wRA = ifelse(is.na(FDR_wRA), 0, FDR_wRA)) %>% select(-TOTAL_DAYS_IN_TIME, -TOTAL_TKOST) %>%
-  write.table("H:/Projects/MTX_PREDICT/data/SOCIODEMOGRAPHICS.tsv", col.names = T, row.names = F, quote = F, sep = "\t")
+  write.table(paste0(FOLDERPATH, "data/SOCIODEMOGRAPHICS.tsv"), col.names = T, row.names = F, quote = F, sep = "\t")
 
-rm(list = ls())
+rm(list = setdiff(ls(), "FOLDERPATH"))
 
 ### NOTES:
 # 2.1. I noticed earlier that some people had INDATUM and UTDATUM on the same date, meaning they came to the hospital, were

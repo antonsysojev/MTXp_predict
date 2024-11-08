@@ -1,7 +1,7 @@
-### LAST UPDATED 26 APRIL 2024 (v1.0).
+### LAST UPDATED 26 AUGUST 2024 (v1.1).
 ### THIS SCRIPT EXTRACTS THE MEDICAL HISTORY AND DRUG HISTORY TRAINING DATA FOR THE GIVEN COHORT.
 
-.libPaths("H:/Programs/RLibrary/")
+#.libPaths("H:/Programs/RLibrary/")
 library(dplyr)
 library(haven)
 library(readr)
@@ -12,14 +12,14 @@ register.sas.files <- str_c(c("npr_inpat", "npr_outpat", "pdr"), "_sub.sas7bdat"
 register.ls <- list.files("H:/Projects/MTX_PREDICT/data/raw/registers/")
 if(!all(register.sas.files %in% register.ls)) stop("ERROR: Failed to find all the registers...")
 
-df <- read_tsv("H:/Projects/MTX_PREDICT/data/COHORT.tsv", show_col_types = F)
+df <- read_tsv(paste0(FOLDERPATH, "data/COHORT.tsv"), show_col_types = F)
 
 ### 1. NATIONAL PATIENT REGISTER
 
-ICD10.subchapters <- read_tsv("H:/Projects/MTX_PREDICT/data/raw/ICD10_subchapters_modifiedFromHW.txt", show_col_types = F) %>% mutate(ID = str_c(start, "_", end))    #SEE NOTE 2.1.
+ICD10.subchapters <- read_tsv(paste0(FOLDERPATH, "data/raw/ICD10_subchapters_modifiedFromHW.txt"), show_col_types = F) %>% mutate(ID = str_c(start, "_", end))    #SEE NOTE 2.1.
 
-medical.raw <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/npr_outpat_sub.sas7bdat") %>%
-  bind_rows(read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/npr_inpat_sub.sas7bdat") %>% select(-UTDATUM)) %>%
+medical.raw <- read_sas(paste0(FOLDERPATH, "data/raw/registers/npr_outpat_sub.sas7bdat")) %>%
+  bind_rows(read_sas(paste0(FOLDERPATH, "data/raw/registers/npr_inpat_sub.sas7bdat")) %>% select(-UTDATUM)) %>%
   right_join(df, by = "pid") %>%
   filter(between(INDATUM, index_date - years(5), index_date)) %>%
   filter(HDIA != "") %>%    #THIS GETS RID OF ALL `HDIA` THAT ARE SET TO ""
@@ -33,7 +33,7 @@ medical.df[is.na(medical.df)] <- 0
 
 ### 2. PRESCRIBED DRUG REGISTER
 
-drug.raw <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/pdr_sub.sas7bdat") %>%
+drug.raw <- read_sas(paste0(FOLDERPATH, "data/raw/registers/pdr_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>%
   filter(between(EDATUM, index_date - years(1), index_date)) %>%
   filter(ATC != "") %>%
@@ -46,10 +46,10 @@ drug.df[is.na(drug.df)] <- 0
 
 ### 3. WRITING FILES
 
-write.table(medical.df, "H:/Projects/MTX_PREDICT/data/MEDICAL.tsv", row.names = F, col.names = T, quote = F, sep = "\t")
-write.table(drug.df, "H:/Projects/MTX_PREDICT/data/DRUG.tsv", row.names = F, col.names = T, quote = F, sep = "\t")
+write.table(medical.df, paste0(FOLDERPATH, "data/MEDICAL.tsv"), row.names = F, col.names = T, quote = F, sep = "\t")
+write.table(drug.df, paste0(FOLDERPATH, "data/DRUG.tsv"), row.names = F, col.names = T, quote = F, sep = "\t")
 
-rm(list = ls())
+rm(list = setdiff(ls(), "FOLDERPATH"))
 
 ### NOTES:
 # 2.1. Helga has a package for ICD-10 categorization. I worked on the remote when adding this into the script, and struggled

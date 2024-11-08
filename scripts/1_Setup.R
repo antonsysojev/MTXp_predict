@@ -1,25 +1,27 @@
-### LAST VERSION UPDATED 26 APRIL 2024 (v2.0).
+### LAST VERSION UPDATED 26 AUGUST 2024 (v2.1).
 ### THIS SCRIPT SETS UP THE NON-GENETIC DATA FOR THE PREDICTION PROJECT.
+
+FOLDERPATH <- "K:/HW/people/Anton Öberg Sysojev/MTXp_predict/"
 
 ### 1. EXTRACT THE 'COHORT' - READ RAW DATA, APPLY EXCLUSION CRITERIA AND OUTPUT A SET OF IDS AND INDEX DATES
 
-source("H:/Projects/MTX_PREDICT/scripts/misc/1_ExtractCohort.R")
+source(paste0(FOLDERPATH, "scripts/misc/1_ExtractCohort.R"))
 
 ### 2. EXTRACT KEY - LINKS PID TO COHORT ID (UNIQUE FOR EIRA AND SRQB) TO GWAS ID
 
-source("H:/Projects/MTX_PREDICT/scripts/misc/1_ExtractKey.R")
+source(paste0(FOLDERPATH, "scripts/misc/1_ExtractKey.R"))
 
 ### 3. EXTRACT TRAINING DATA
 #! Note that this needs you to run `misc/1_ExtractNonGeneticTrainingHelper.sas` and `misc/1_ExtractFskHelper.sas` a priori, to extract the data used in the three below scripts. 
 #! See TODO 1.1. for potential improvements.
 
-source("H:/Projects/MTX_PREDICT/scripts/misc/1_ExtractSociodemographics.R")
-source("H:/Projects/MTX_PREDICT/scripts/misc/1_ExtractClinical.R")
-source("H:/Projects/MTX_PREDICT/scripts/misc/1_ExtractMedicalDrug.R")
+source(paste0(FOLDERPATH, "scripts/misc/1_ExtractSociodemographics.R"))
+source(paste0(FOLDERPATH, "scripts/misc/1_ExtractClinical.R"))
+source(paste0(FOLDERPATH, "scripts/misc/1_ExtractMedicalDrug.R"))
 
 ### 4. EXTRACT LABELS
 
-source("H:/Projects/MTX_PREDICT/scripts/misc/1_ExtractLabels.R")
+source(paste0(FOLDERPATH, "scripts/misc/1_ExtractLabels.R"))
 
 ### TODO:
 # 1.1. The underlying SAS-HELPER scripts should not be in SAS. They might as well be in R

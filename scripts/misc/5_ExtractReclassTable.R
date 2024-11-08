@@ -3,8 +3,6 @@
 
 .libPaths("H:/Programs/RLibrary/")
 library(dplyr)
-library(ggplot2)
-library(gridExtra)
 library(readr)
 library(stringr)
 library(tidyr)
@@ -33,11 +31,12 @@ for(i in 1:nrow(id.df)){
 
 reclass.complete.df <- reclass.list %>% bind_rows()
 
-### TABLE S7.
+### REFORMAT INTO TABLE
 
 order.model.idx <- data.frame(MODEL.ID = c("LOGREG", "GLMNET", "RNDFOR", "XGBOST"), IDX.MODEL = 1:4)
 order.outcome.idx <- data.frame(ID = c("persistence_d365 - PRIMARY", "persistence_d1096 - PRIMARY"), IDX.OUTCOME = 1:2)
+
 reclass.complete.df %>% filter(str_detect(ID, "persistence")) %>% filter(str_detect(ID, "PRIMARY")) %>%
   left_join(order.model.idx, by = "MODEL.ID") %>% left_join(order.outcome.idx, by = "ID") %>% arrange(IDX.OUTCOME, IDX.MODEL) %>%
   select(ID, MODEL.ID, PAIR.12, PAIR.13, PAIR.14) %>%
-  write.xlsx("data/output/res/TableS9.xlsx")
+  write.xlsx("data/output/res/TableReclass.xlsx")

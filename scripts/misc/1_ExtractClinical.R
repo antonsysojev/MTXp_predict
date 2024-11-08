@@ -1,7 +1,7 @@
-### LAST UPDATED APRIL 26 2024 (v1.0).
+### LAST UPDATED AUGUST 26 2024 (v1.0).
 ### THIS SCRIPT EXTRACTS CLINICAL TRAINING DATA FOR THE GIVEN COHORT.
 
-.libPaths("H:/Programs/RLibrary/")
+#.libPaths("H:/Programs/RLibrary/")
 library(dplyr)
 library(haven)
 library(lubridate)
@@ -10,21 +10,21 @@ library(readr)
 library(stringr)
 
 register.sas.files <- str_c(c("srq_terapi", "pdr", "srq_besoksdata"), "_sub.sas7bdat")
-register.ls <- list.files("H:/Projects/MTX_PREDICT/data/raw/registers/")
+register.ls <- list.files(paste0(FOLDERPATH, "data/raw/registers/"))
 if(!all(register.sas.files %in% register.ls)) stop("ERROR: Failed to find all the registers...")
 
-df <- read_tsv("H:/Projects/MTX_PREDICT/data/COHORT.tsv", show_col_types = F)
+df <- read_tsv(paste0(FOLDERPATH, "data/COHORT.tsv"), show_col_types = F)
 
 ### 1. SRQ TERAPI
 
-terapi.srq  <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/srq_terapi_sub.sas7bdat") %>%
+terapi.srq  <- read_sas(paste0(FOLDERPATH, "data/raw/registers/srq_terapi_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>%
   mutate(order_days_SRQ = interval(index_date, order_date) / days(1)) %>%
   filter(between(order_days_SRQ, -10, 30)) %>%     #LOOK ONLY INTO PRESCRIPTIONS MADE WITHIN [-10, 30] DAYS OF INDEX DATE
   mutate(STEROID_SRQ = ifelse(prep_typ == "cortisone", 1, 0), NSAID = ifelse(prep_typ == "nsaid", 1, 0)) %>%
   group_by(pid) %>% summarise(ANY_STEROID_SRQ = ifelse(sum(STEROID_SRQ) > 0, 1, 0), ANY_NSAID = ifelse(sum(NSAID) > 0, 1, 0)) %>% ungroup() %>% distinct()
 
-terapi.pdr <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/pdr_sub.sas7bdat") %>%
+terapi.pdr <- read_sas(paste0(FOLDERPATH, "data/raw/registers/pdr_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>%
   mutate(order_days_PDR = interval(index_date, EDATUM) / days(1)) %>%
   filter(between(order_days_PDR, -10, 30)) %>%
@@ -38,7 +38,7 @@ terapi.df <- df %>% left_join(terapi.srq, by = "pid") %>% left_join(terapi.pdr, 
 
 ### 2. SRQ BESOK
 
-besok.df <- read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/srq_besoksdata_sub.sas7bdat") %>%
+besok.df <- read_sas(paste0(FOLDERPATH, "data/raw/registers/srq_besoksdata_sub.sas7bdat")) %>%
   right_join(df, by = "pid") %>%
   mutate(visit_days = interval(index_date, visit_date) / days(1)) %>%
   filter(between(visit_days, -10, 30)) %>%     #AGAIN, LOOK ONLY INTO VISITS MADE WITHIN [-10, 30] DAYS OF INDEX DATE
@@ -65,7 +65,7 @@ smoke.df <- read_sas("K:/Reuma/RASPA 2021/01. Data Warehouse/01. Processed Data/
 ### 4. ANTIBODIES
 ### ### 4.1. EIRA - RHEUMATOID FACTOR
 
-eira.rf.raw <- read_xlsx("H:/Projects/MTX_PREDICT/data/raw/antibodies/221215 serologi by Johan Ronnelid.xlsx") %>% select(COHORT_ID = `Sample clean ID`, RF = `IgM RF, IU/mL`)
+eira.rf.raw <- read_xlsx(paste0(FOLDERPATH, "data/raw/antibodies/221215 serologi by Johan Ronnelid.xlsx")) %>% select(COHORT_ID = `Sample clean ID`, RF = `IgM RF, IU/mL`)
 
 rf.cutoff <- read_sas("K:/Reuma/RASPA 2021/01. Data Warehouse/01. Processed Data/02. EIRA/eira.sas7bdat") %>% distinct(pid, COHORT_ID = eira, typ) %>%
   filter(!is.na(COHORT_ID)) %>%
@@ -77,13 +77,13 @@ eira.rf <- eira.rf.raw %>% mutate(RF = ifelse(RF < rf.cutoff$RF_q098, 0, 1)) %>%
 
 ### ### 4.2. EIRA - ANTI-CCP
 
-eira.ccp <- read_xlsx("H:/Projects/MTX_PREDICT/data/raw/antibodies/221206 EIRA CCP till Helga.xlsx", col_names = paste0("V", 1:13), skip = 1) %>% mutate(ACPA_RAW = ifelse(V2 == ">3200", 3201, V2) %>% as.numeric()) %>% mutate(ACPA = ifelse(ACPA_RAW < 25, 0, 1)) %>% select(COHORT_ID = V1, ACPA) %>% filter(!is.na(COHORT_ID)) %>%
-  bind_rows(read_xlsx("H:/Projects/MTX_PREDICT/data/raw/antibodies/221206 EIRA CCP till Helga.xlsx", col_names = paste0("V", 1:13), skip = 1) %>% mutate(ACPA_RAW = ifelse(V6 == "<25", 24, V6) %>% as.numeric()) %>% mutate(ACPA = ifelse(ACPA_RAW < 25, 0, 1)) %>% select(COHORT_ID = V5, ACPA) %>% filter(!is.na(COHORT_ID))) %>%
+eira.ccp <- read_xlsx(paste0(FOLDERPATH, "data/raw/antibodies/221206 EIRA CCP till Helga.xlsx"), col_names = paste0("V", 1:13), skip = 1) %>% mutate(ACPA_RAW = ifelse(V2 == ">3200", 3201, V2) %>% as.numeric()) %>% mutate(ACPA = ifelse(ACPA_RAW < 25, 0, 1)) %>% select(COHORT_ID = V1, ACPA) %>% filter(!is.na(COHORT_ID)) %>%
+  bind_rows(read_xlsx(paste0(FOLDERPATH, "data/raw/antibodies/221206 EIRA CCP till Helga.xlsx"), col_names = paste0("V", 1:13), skip = 1) %>% mutate(ACPA_RAW = ifelse(V6 == "<25", 24, V6) %>% as.numeric()) %>% mutate(ACPA = ifelse(ACPA_RAW < 25, 0, 1)) %>% select(COHORT_ID = V5, ACPA) %>% filter(!is.na(COHORT_ID))) %>%
   distinct(cid = COHORT_ID, ACPA)    #sEE NOTE 2.1
 
 ### ### 4.3. SRQB - RHEUMATOID FACTOR - ANTI-CCP
 
-srqb.rf.ccp <- read_sas("H:/Projects/MTX_PREDICT/data/raw/antibodies/anton_ccp_rf.sas7bdat") %>% 
+srqb.rf.ccp <- read_sas(paste0(FOLDERPATH, "data/raw/antibodies/anton_ccp_rf.sas7bdat")) %>% 
   select(cid = biobank_id, RF = RF_IgM, ACPA = antiCCP) %>% mutate(cid = as.character(cid)) %>%
   distinct()
 
@@ -93,7 +93,7 @@ serostatus.ab <- eira.rf %>% full_join(eira.ccp, by = "cid") %>% bind_rows(srqb.
   mutate(SEROPOS.AB = case_when(RF == 1 | ACPA == 1 ~ 1, RF == 0 & ACPA == 0 ~ 0, .default = NA)) %>%
   group_by(cid) %>% filter(!(n() > 1 & is.na(SEROPOS.AB))) %>% ungroup() %>%
   distinct(cid, SEROPOS.AB) %>% 
-  left_join(read_tsv("H:/Projects/MTX_PREDICT/data/KEY.tsv", show_col_types = F), by = "cid") %>%
+  left_join(read_tsv(paste0(FOLDERPATH, "data/KEY.tsv"), show_col_types = F), by = "cid") %>%
   right_join(df, by = "pid") %>%
   distinct(pid, SEROPOS.AB) %>%
   group_by(pid) %>% filter(!(n() > 1 & is.na(SEROPOS.AB))) %>% ungroup() %>%    #REMOVES DUPLICATES WHERE ONE IS MISSING AND ONE NON-MISSING
@@ -105,7 +105,7 @@ seropos <- str_c(c("M05.3", "M05.8", "M05.9", "M06.8L", "M06.0L"), collapse = "|
 seroneg <- str_c(c("M06.8M", "M06.0M"), collapse = "|")
 
 serostatus.icd <- df %>% left_join(serostatus.ab, by = "pid") %>% filter(is.na(SEROPOS.AB)) %>%
-  left_join(read_sas("H:/Projects/MTX_PREDICT/data/raw/registers/srq_basdata_sub.sas7bdat") %>% distinct(pid, diagnoskod_1, diagnoskod_2), by = "pid") %>%
+  left_join(read_sas(paste0(FOLDERPATH, "data/raw/registers/srq_basdata_sub.sas7bdat")) %>% distinct(pid, diagnoskod_1, diagnoskod_2), by = "pid") %>%
   mutate(SPOS_1 = ifelse(str_detect(diagnoskod_1, seropos), 1, NA), SPOS_2 = ifelse(str_detect(diagnoskod_2, seropos), 1, NA)) %>%
   mutate(SNEG_1 = ifelse(str_detect(diagnoskod_1, seroneg), 1, NA), SNEG_2 = ifelse(str_detect(diagnoskod_2, seroneg), 1, NA)) %>%
   mutate(SEROPOS_1 = case_when(SPOS_1 == 1 & is.na(SNEG_1) ~ 1, SNEG_1 == 1 & is.na(SPOS_1) ~ 0, is.na(SPOS_1) & is.na(SNEG_1) ~ -9)) %>%
@@ -126,9 +126,9 @@ df %>% left_join(terapi.df, by = "pid") %>%
   left_join(serostatus.df, by = "pid") %>%
   mutate(STEROID = ifelse(is.na(visit_exist), NA, ANY_STEROID), NSAID = ifelse(is.na(visit_exist), NA, ANY_NSAID)) %>%    #PER COMMENT FROM JA OR TF, IF NO VISIT EXISTS AROUND THE STEROID/NSAID THEN THESE SHOULD NOT BE TRUSTED? BLANK THEM
   select(-visit_exist, -ANY_STEROID, -ANY_NSAID) %>%
-  write.table("H:/Projects/MTX_PREDICT/data/CLINICAL.tsv", col.names = T, row.names = F, quote = F, sep = "\t")
+  write.table(paste0(FOLDERPATH, "data/CLINICAL.tsv"), col.names = T, row.names = F, quote = F, sep = "\t")
 
-rm(list = ls())
+rm(list = setdiff(ls(), "FOLDERPATH"))
 
 ### TODO:
 # 1.1. If there are duplicated visits on the same date, with different numbers and/or missing, then some can be collapsed to fill out missing values. This may resolve some individuals.

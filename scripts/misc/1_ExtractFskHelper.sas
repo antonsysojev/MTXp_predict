@@ -7,12 +7,12 @@
 *### 1. LOAD THE INPUT DATA FOLDERS INTO SAS;
 
 LIBNAME FSK "K:\Reuma\RASPA 2021\01. Data Warehouse\02. Raw Data\10. FSK";
-LIBNAME DATA "H:\Projects\MTX_PREDICT\data\raw";
-LIBNAME OUT "H:\Projects\MTX_PREDICT\data\raw\registers";
+LIBNAME DATA "K:\HW\people\Anton Öberg Sysojev\MTXp_predict\data\raw";
+LIBNAME OUT "HK:\HW\people\Anton Öberg Sysojev\MTXp_predict\data\raw\registers";
 
 * --- --- --- CREATE THE COMBINED EIRA + SRQB PARTICIPANT FILE --- --- ---;
 
-PROC IMPORT DATAFILE = 'H:\Projects\MTX_PREDICT\data\COHORT.tsv'
+PROC IMPORT DATAFILE = 'HK:\HW\people\Anton Öberg Sysojev\MTXp_predict\data\COHORT.tsv'
 	OUT = RAW_PID_CLEAN
 	DBMS=DLM;
 	delimiter='09'x;

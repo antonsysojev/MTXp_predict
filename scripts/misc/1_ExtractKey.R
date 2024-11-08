@@ -1,7 +1,7 @@
-### LAST VERSION UPDATED 26 APRIL 2024 (v2.0).
+### LAST VERSION UPDATED 26 AUGUST 2024 (v2.1).
 ### THIS SCRIPT EXTRACTS A KEY THAT LINKS pid TO cid (COHORT ID) TO gid (GWAS ID).
 
-.libPaths("H:/Programs/RLibrary/")
+#.libPaths("H:/Programs/RLibrary/")
 library(dplyr)
 library(haven)
 library(readr)
@@ -33,8 +33,8 @@ eira.b2.KEY <- eira.b2 %>% inner_join(eira.raw, by = c("EIRA" = "eira"))
 eira.KEY <- eira.b1.KEY %>% bind_rows(eira.b2.KEY) %>% select(pid, cid = EIRA, gid = GWAS, BATCH) %>% arrange(BATCH, pid)
 
 KEY <- srqb.KEY %>% bind_rows(eira.KEY) %>% distinct()     #NOTE THAT THERE MAY BE DUPLICATES DEPENDING ON THE ID!
-write.table(KEY, "H:/Projects/MTX_PREDICT/data/KEY.tsv", quote = F, col.names = T, row.names = F, sep = "\t")
-rm(list = ls())
+write.table(KEY, paste0(FOLDERPATH, "data/KEY.tsv"), row.names = F, col.names = T, quote = F, sep = "\t")
+rm(list = setdiff(ls(), "FOLDERPATH"))
 
 ### NOTES:
 # 2.1. This seems to be the main key for linking SRQb-participants from cid to gid.

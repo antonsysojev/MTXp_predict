@@ -1,5 +1,5 @@
 ### LAST VERSION UPDATED 25 JUNE 2024 (v1.0).
-### THIS SCRIPT EXTRACTS AUC AND CALIBRATION VALUES FOR THE REFIT DATA, I.E. TABLE S8
+### THIS SCRIPT EXTRACTS AUC AND CALIBRATION VALUES FOR THE REFITTED DATA.
 
 .libPaths("H:/Programs/RLibrary")
 library(dplyr)
@@ -15,17 +15,17 @@ refit.list <- list()
 for(i in 1:length(outcomes.id)){
   
   refit.inner.list <- list()
-  refit.file <- list.files("data/output/res/persistence_d365")[str_which(list.files("data/output/res/persistence_d365/"), "refit")]
-  refit.df <- read_tsv(str_c("data/output/res/", outcomes.id[i], "/", refit.file), show_col_types = F)
+  refit.file <- list.files(str_c(FOLDERPATH, "data/output/res/"), "Prob")[str_which(list.files(str_c(FOLDERPATH, "data/output/res/"), "Prob"), outcomes.id[i])]
+  refit.df <- read_tsv(str_c(FOLDERPATH, "data/output/res/", refit.file)) %>% select(pid, OUTCOME, PROB)
   
   # AUC AND OTHERS
   refit.inner.list[[1]] <- ci.auc(refit.df$OUTCOME, refit.df$PROB, quiet = T) %>% as.numeric()
   
   #! Need Youden J, sensitivity, specificity, ppv and npv too...
+  #! Do we?
   
   # CALIBRATION
-  refit.df <- refit.df %>% mutate(OUTCOME = case_when(OUTCOME == "YES" ~ 1, OUTCOME == "NO" ~ 0, .default = NA))
-
+  
   refit.inner.list[[2]] <- mean(refit.df$OUTCOME) - mean(refit.df$PROB)    #MEAN CALIBRATION
   
   cal.int.raw <- (glm(OUTCOME ~ I(PROB), data = refit.df, family = binomial(link = "logit")) %>% coef())[1]
@@ -47,6 +47,4 @@ refit.list %>% bind_rows() %>% as_tibble() %>%
   select(OUTCOME, AUC, MEAN, INTERCEPT, SLOPE) %>%
   pivot_longer(cols = c(AUC, MEAN, INTERCEPT, SLOPE)) %>%
   pivot_wider(names_from = OUTCOME, values_from = value) %>%
-  write.xlsx("data/output/res/TableS8.xlsx")
-
-#! Write this to Table S8.
+  write.xlsx("data/output/res/TableRefitCalibration.xlsx")

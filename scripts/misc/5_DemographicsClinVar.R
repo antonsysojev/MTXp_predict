@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 ### LAST VERSION UPDATED 18 JUNE 2024 (v1.1).
-### THIS SCRIPT EXTRACTS TABLE S1 AND S2 FOR THE MANUSCRIPT, CONTAINING COUNTS FOR THE SOCIODEMOGRAPHICS VARIABLES.
+### THIS SCRIPT EXTRACTS TABLES CONTAINING DISTRIBUTIONS OF THE SOCIODEMOGRAPHICS VARIABLES.
 
 .libPaths("H:/Programs/RLibrary/")
 library(dplyr)
@@ -55,9 +55,9 @@ clinvar.id <- c("SEROPOSITIVITY", "STEROID", "NSAID", "duration", "svullna_leder
 counts.wide.df %>% bind_rows(medians.wide.df) %>% 
   filter(str_detect(VAR.ID, str_c(demographics.id, collapse = "|"))) %>% 
   select(VAR.ID, TOTAL_1, persistence_d365_1, persistence_d365_0, persistence_d1096_1, persistence_d1096_0) %>%
-  write.xlsx("data/output/res/TableS1.xlsx")
+  write.xlsx("data/output/res/TableDemographics.xlsx")
 
 counts.wide.df %>% bind_rows(medians.wide.df) %>% 
   filter(str_detect(VAR.ID, str_c(clinvar.id, collapse = "|"))) %>% 
   select(VAR.ID, TOTAL_1, persistence_d365_1, persistence_d365_0, persistence_d1096_1, persistence_d1096_0) %>%
-  write.xlsx("data/output/res/TableS2.xlsx")
+  write.xlsx("data/output/res/TableClinVar.xlsx")

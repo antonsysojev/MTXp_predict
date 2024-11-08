@@ -33,12 +33,12 @@ df_IMPUTED <- missForest(df %>% select(-pid, -index_date), verbose = T, maxiter 
 ### 3. CLEAN UP AND OUTPUT
 
 df_IMPUTED_RAW <- df_IMPUTED$ximp %>% mutate(pid = rownames(df_IMPUTED$ximp) %>% as.numeric()) %>% 
-    right_join(df %>% select(pid, index_date), by = "pid") %>% select(pid, index_date, everything()) %>% 
-    mutate(svullna_leder = round(svullna_leder, 0), omma_leder = round(omma_leder, 0)) %>%	#ROUND VALUES THAT SHOULD BE INTEGERS
-    mutate(das28 = 0.28 * sqrt(svullna_leder) + 0.56 * sqrt(omma_leder) + 0.70 * log(sr) + 0.014 * patientens_globala) %>%	#SEE NOTE 2.3. ON COMPUTING THIS
-    mutate(das28CRP = 0.28 + sqrt(svullna_leder) + 0.56 * sqrt(omma_leder) + 0.36 * log(crp + 1) + 0.014 * patientens_globala + 0.96) %>% 
-    mutate(EDUCATION_01 = ifelse(EDUCATION == 1, 1, 0), EDUCATION_02 = ifelse(EDUCATION == 2, 1, 0),      #MANUAL ONE-HOT ENCODING OF NON-BINARY CATEGORICAL VARIABLES
-           SMOKE_01 = ifelse(SMOKE == 1, 1, 0), SMOKE_02 = ifelse(SMOKE == 2, 1, 0)) %>% select(-EDUCATION, -SMOKE) %>% as_tibble()
+  right_join(df %>% select(pid, index_date), by = "pid") %>% select(pid, index_date, everything()) %>% 
+  mutate(svullna_leder = round(svullna_leder, 0), omma_leder = round(omma_leder, 0)) %>%	#ROUND VALUES THAT SHOULD BE INTEGERS
+  mutate(das28 = 0.28 * sqrt(svullna_leder) + 0.56 * sqrt(omma_leder) + 0.70 * log(sr) + 0.014 * patientens_globala) %>%	#SEE NOTE 2.3. ON COMPUTING THIS
+  mutate(das28CRP = 0.28 + sqrt(svullna_leder) + 0.56 * sqrt(omma_leder) + 0.36 * log(crp + 1) + 0.014 * patientens_globala + 0.96) %>% 
+  mutate(EDUCATION_01 = ifelse(EDUCATION == 1, 1, 0), EDUCATION_02 = ifelse(EDUCATION == 2, 1, 0),      #MANUAL ONE-HOT ENCODING OF NON-BINARY CATEGORICAL VARIABLES
+         SMOKE_01 = ifelse(SMOKE == 1, 1, 0), SMOKE_02 = ifelse(SMOKE == 2, 1, 0)) %>% select(-EDUCATION, -SMOKE) %>% as_tibble()
 
 non_categorical_feat.char <- c("AGE", "TIME_INHOSP", "COST_DRUG", "DisabilityPension_Days", "SickLeave_Days", "duration", "svullna_leder", "omma_leder", "sr", "crp", "patientens_globala", "haq", "smarta", "das28", "das28CRP")
 df_IMPUTED_STD <- df_IMPUTED_RAW %>% mutate(across(all_of(non_categorical_feat.char), ~ (.x - mean(.x, na.rm = T)) / sd(.x, na.rm = T)))    #STANDARDIZE AFTER IMPUTATION (SEE NOTE 2.2.)

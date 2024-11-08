@@ -13,7 +13,14 @@ args <- arg_parser('') %>% add_argument('NEG.CUT', type = "numerical") %>% add_a
 ntile.neg <- args$NEG.CUT
 ntile.pos <- args$POS.CUT
 
-prob.df <- read_tsv("H:/Projects/MTX_PREDICT/TMP/PROB.tsv")
+prob.files <- list.files("data/output/res")[str_which(list.files("data/output/res"), "Prob")]
+prob.p1yr.file <- prob.files[str_which(prob.files, "persistence_d365")]
+prob.p3yr.file <- prob.files[str_which(prob.files, "persistence_d1096")]
+prob.p1yr.df <- read_tsv(str_c(FOLDERPATH, "data/output/res/", prob.p1yr.file)) %>% mutate(TYPE = "persistence_d365")
+prob.p3yr.df <- read_tsv(str_c(FOLDERPATH, "data/output/res/", prob.p3yr.file)) %>% mutate(TYPE = "persistence_d1096")
+prob.df <- prob.p1yr.df %>% bind_rows(prob.p3yr.df) %>% arrange(pid)
+# Previous code just loaded a TMP-file, this ought to work better!
+
 sociodemographics.df <- read_tsv("H:/Projects/MTX_PREDICT/data/SOCIODEMOGRAPHICS.tsv", show_col_types = F)
 clinical.df <- read_tsv("H:/Projects/MTX_PREDICT/data/CLINICAL.tsv", show_col_types = F) %>% select(-index_date)
 
@@ -146,6 +153,4 @@ df.clean <- p.cat.df %>% bind_rows(p.numeric.df) %>%
   left_join(order.var.idx, by = "VAR") %>% arrange(IDX) %>%
   select(VAR, negative_persistence_d365, positive_persistence_d365, P.365, negative_persistence_d1096, positive_persistence_d1096, P.1096)
 
-if(ntile.neg == 1 & ntile.pos == 10) write.xlsx(df.clean, "data/output/res/Table2.xlsx")
-if(ntile.neg == 3 & ntile.pos == 8) write.xlsx(df.clean, "data/output/res/TableS9.xlsx")
-if(!(ntile.neg == 1 & ntile.pos == 10) | !(ntile.neg == 3 & ntile.pos == 8)) write.xlsx(df.clean, str_c("TMP/DemographicsCorrect", ntile.neg, "-", ntile.pos, ".xlsx"))
+write.xlsx(df.clean, str_c("data/output/res/TableDemographicsCorrectNtileNeg", ntile.neg, "NtilePos", ntile.pos, ".xlsx"))

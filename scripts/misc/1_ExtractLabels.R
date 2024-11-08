@@ -1,12 +1,12 @@
-### LAST UPDATED APRIL 26 2024 (v1.0).
+### LAST UPDATED AUGUST 26 2024 (v1.1).
 ### THIS SCRIPT EXTRACTS THE LABELS FOR THE GIVEN COHORT.
 
-.libPaths("H:/Programs/RLibrary/")
+#.libPaths("H:/Programs/RLibrary/")
 library(dplyr)
 
-df <- read_tsv("H:/Projects/MTX_PREDICT/data/COHORT.tsv", show_col_types = F)
-eira.raw <- read_sas("H:/Projects/MTX_PREDICT/data/raw/eira_mtx_all_PREDICT.sas7bdat")
-srqb.raw <- read_sas("H:/Projects/MTX_PREDICT/data/raw/srqb_mtx_all_PREDICT.sas7bdat")
+df <- read_tsv(paste0(FOLDERPATH, "data/COHORT.tsv"), show_col_types = F)
+eira.raw <- read_sas(paste0(FOLDERPATH, "data/raw/eira_mtx_all_PREDICT.sas7bdat"))
+srqb.raw <- read_sas(paste0(FOLDERPATH, "data/raw/srqb_mtx_all_PREDICT.sas7bdat"))
 
 ### 1. PERSISTENCE OUTCOMES
 
@@ -40,6 +40,6 @@ df %>% left_join(persistence.df, by = "pid") %>%
   left_join(discontinuation.df, by = "pid") %>%
   left_join(remRetention.df, by = "pid") %>%
   left_join(classicOutcomes.df, by = "pid") %>%
-  write.table("H:/Projects/MTX_PREDICT/data/LABELS.tsv", row.names = F, col.names = T, quote = F, sep = "\t")
+  write.table(paste0(FOLDERPATH, "data/LABELS.tsv"), row.names = F, col.names = T, quote = F, sep = "\t")
 
-rm(list = ls())
+rm(list = setdiff(ls(), "FOLDERPATH"))
