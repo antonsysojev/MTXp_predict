@@ -1,6 +1,6 @@
 # Prediction of methotrexate treatment outcomes in early rheumatoid arthritis
 
-This repository hosts scripts and some non-sensitive data related to an ongoing project on predicting persistence to methotrexate in patients with rheumatoid arthritis, using machine learning methods. An 'alpha' version of this project was finished/made-available on the 25th of June 2024 (current version), which produces the content of the first manuscript draft. This is a *functional* pipeline for performing the analysis, though it is not perfect, and subsequent checks will be needed before the pipeline as a whole, can be executed from start-to-finish.
+This repository hosts scripts and some non-sensitive data related to the study described in [Sysojev et al. (2025)](https://pubmed.ncbi.nlm.nih.gov/40190030/). However, it does *not* contain any type of beyond basic ICD- and ATC-code mappings used within the study.
 
 # 1. SCRIPTS
 
